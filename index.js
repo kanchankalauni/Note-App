@@ -1,5 +1,3 @@
-
-
 document.getElementById('btn').addEventListener('click', () => {
 
     let divEle = document.createElement('div')
@@ -17,6 +15,7 @@ document.getElementById('btn').addEventListener('click', () => {
     `
 
     let editBtn = divEle.querySelector('.editBtn')
+    let removeBtn = divEle.querySelector('.removeBtn')
     
     editBtn.addEventListener('click', () => {
         let txtA = divEle.querySelector('#txtA')
@@ -25,6 +24,11 @@ document.getElementById('btn').addEventListener('click', () => {
         div.innerHTML = txtA.value
         txtA.classList.toggle('hidden')
         div.classList.toggle('hidden')
+    })
+
+    removeBtn.addEventListener('click', (e) => {
+        divEle.remove()
+        // e.target.parentNode.parentNode.remove()
     })
 
     document.getElementById('allNote').append(divEle)
