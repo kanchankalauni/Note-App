@@ -16,6 +16,10 @@
     padding: 10px;
 }
 
+#txtA{
+    background-color: rgba(0, 140, 255, 0.797);
+}
+
 .note::-webkit-scrollbar{
     display: none;
 }
@@ -27,6 +31,7 @@
 #allNote{
     display: flex;
     flex-wrap: wrap;
+    gap: 50px;
 }
 
 .singleNote{
@@ -40,6 +45,7 @@
     font-size: 1.5em;
     margin: 10px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .date{
