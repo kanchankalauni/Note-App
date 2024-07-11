@@ -1,5 +1,9 @@
 document.getElementById('btn').addEventListener('click', () => {
-
+    let date
+    function setDate() {
+        date = new Date().toLocaleString()
+    }
+    setDate()
     let divEle = document.createElement('div')
     divEle.setAttribute('class', 'singleNote')
     divEle.innerHTML = `
@@ -11,7 +15,7 @@ document.getElementById('btn').addEventListener('click', () => {
         <div class="note hidden" id="div"></div>
         <textarea class="note " id="txtA"></textarea>
     </div>
-    <div class="date">04/06/2024</div>
+    <div class="date" id="dateDiv">${date}</div>
     `
 
     let editBtn = divEle.querySelector('.editBtn')
@@ -20,10 +24,13 @@ document.getElementById('btn').addEventListener('click', () => {
     editBtn.addEventListener('click', () => {
         let txtA = divEle.querySelector('#txtA')
         let div = divEle.querySelector('#div')
+        let dateDiv = divEle.querySelector('#dateDiv')
         // console.log(txtA)
         div.innerHTML = txtA.value
         txtA.classList.toggle('hidden')
         div.classList.toggle('hidden')
+        setDate()
+        dateDiv.innerHTML = date
     })
 
     removeBtn.addEventListener('click', (e) => {
