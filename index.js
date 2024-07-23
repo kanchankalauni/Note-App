@@ -1,4 +1,8 @@
 document.getElementById('btn').addEventListener('click', () => {
+    addNote()
+})
+
+function addNote() {
     let date
     function setDate() {
         date = new Date().toLocaleString()
@@ -39,5 +43,4 @@ document.getElementById('btn').addEventListener('click', () => {
     })
 
     document.getElementById('allNote').append(divEle)
-    
-})
+}
