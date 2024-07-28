@@ -1,5 +1,4 @@
 let data = JSON.parse(localStorage.getItem('notes')) || []
-
 function displayNote() {
     data.map((singleNote) => {
         // console.log(singleNote)
@@ -15,43 +14,41 @@ document.getElementById('btn').addEventListener('click', () => {
     addNote()
 })
 
-function addNote(note = '') {
-    console.log(note)
-    let date
-    function setDate() {
-        date = new Date().toLocaleString()
-    }
-    setDate()
+function addNote(note = {}) {
+    const {title = "", noteDate = setDate()} = note
+    
+    
     let divEle = document.createElement('div')
     divEle.setAttribute('class', 'singleNote')
     divEle.innerHTML = `
     <div>
-        <button class="editBtn">Edit</button>
+        <button class="editBtn">${title ? 'Edit' : 'Save'}</button>
         <button class="removeBtn">Remove</button>
     </div>
     <div>
-        <div class="note ${note ? '' : 'hidden'}" id="div"></div>
-        <textarea class="note ${note ? 'hidden' : ''}" id="txtA"></textarea>
+        <div class="note ${title ? '' : 'hidden'}" id="div"></div>
+        <textarea class="note ${title ? 'hidden' : ''}" id="txtA"></textarea>
     </div>
-    <div class="date" id="dateDiv">${date}</div>
+    <div class="date" id="dateDiv">${noteDate}</div>
     `
 
     let editBtn = divEle.querySelector('.editBtn')
     let removeBtn = divEle.querySelector('.removeBtn')
     let txtA = divEle.querySelector('#txtA')
     let div = divEle.querySelector('#div')
+    // let dateDiv = divEle.querySelector('#dateDiv')
 
-    div.innerHTML = note
-    txtA.innerHTML = note
+    div.innerHTML = title
+    txtA.innerHTML = title
+    // dateDiv.innerHTML = note.noteDate
     
     editBtn.addEventListener('click', () => {
-        let dateDiv = divEle.querySelector('#dateDiv')
         // console.log(txtA)
+        let isEditing = editBtn.textContent === 'Edit'
+        editBtn.textContent = isEditing ? 'Save' : 'Edit'
         div.innerHTML = txtA.value
         txtA.classList.toggle('hidden')
         div.classList.toggle('hidden')
-        setDate()
-        dateDiv.innerHTML = date
     })
 
     removeBtn.addEventListener('click', (e) => {
@@ -68,13 +65,15 @@ function addNote(note = '') {
 }
 
 function updateStorage() {
-    let textArea = document.querySelectorAll('textarea')
-    data = []
-    textArea.forEach(e => {
-        if (e) {
-            data.push(e.value)   
-        }
+    // console.log(document.querySelectorAll('.singleNote'))
+    data = Array.from(document.querySelectorAll('.singleNote')).map(noteDiv => {
+        let textArea = noteDiv.querySelector('textarea').value
+        let date = noteDiv.querySelector('.date').textContent
+        return {title : textArea , noteDate : date}
     })
     localStorage.setItem('notes', JSON.stringify(data))
-    // displayNote()
+}
+
+function setDate() {
+    return(new Date().toLocaleString())
 }
