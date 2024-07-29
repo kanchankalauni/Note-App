@@ -1,6 +1,7 @@
 let data = JSON.parse(localStorage.getItem('notes')) || []
 
 function displayNote() {
+    document.getElementById('allNote').innerHTML = ''
     data.map((singleNote) => {
         if (singleNote) {
             addNote(singleNote)
@@ -36,7 +37,7 @@ function addNote(note = {}) {
     let txtA = divEle.querySelector('#txtA')
     let div = divEle.querySelector('#div')
 
-    div.innerHTML = title
+    div.innerHTML = marked(title)
     txtA.innerHTML = title
     
     editBtn.addEventListener('click', () => {
@@ -45,6 +46,7 @@ function addNote(note = {}) {
         div.innerHTML = txtA.value
         txtA.classList.toggle('hidden')
         div.classList.toggle('hidden')
+        displayNote()
     })
 
     removeBtn.addEventListener('click', () => {
