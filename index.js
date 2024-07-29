@@ -43,10 +43,9 @@ function addNote(note = {}) {
     editBtn.addEventListener('click', () => {
         let isEditing = editBtn.textContent === 'Edit'
         editBtn.textContent = isEditing ? 'Save' : 'Edit'
-        div.innerHTML = txtA.value
+        div.innerHTML = marked(txtA.value)
         txtA.classList.toggle('hidden')
         div.classList.toggle('hidden')
-        displayNote()
     })
 
     removeBtn.addEventListener('click', () => {
