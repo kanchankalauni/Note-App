@@ -2,18 +2,37 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .note{
     width: 350px;
     height: 350px;
-    background-color: rgb(223, 241, 55);
+    background-color: rgb(255, 115, 215);
     font-size: 2em;
     overflow-wrap: break-word;
     overflow-y: scroll;
     outline: none;
     border: none;
     padding: 10px;
+}
+
+body{
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    overflow-x: hidden;
+    background-color: rgba(253, 202, 135, 0.842);
+    /* border: 2px solid red; */
+}
+
+.main{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* border: 2px solid black; */
 }
 
 #txtA{
@@ -31,6 +50,8 @@
 #allNote{
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     gap: 50px;
 }
 
@@ -39,7 +60,11 @@
     border-radius: 10px;
 }
 
-.editBtn , .removeBtn{
+h1{
+    font-size: 3em;
+}
+
+.editBtn , .removeBtn , #btn{
     border: none;
     padding: 10px;
     font-size: 1.5em;
