@@ -11,8 +11,13 @@ function displayNote() {
 
 displayNote()
 
-document.getElementById('btn').addEventListener('click', () => {
+document.getElementById('addBtn').addEventListener('click', () => {
     addNote()
+})
+
+document.getElementById('remAllBtn').addEventListener('click', () => {
+    document.getElementById('allNote').innerHTML = ''
+    updateStorage()
 })
 
 function addNote(note = {}) {

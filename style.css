@@ -6,8 +6,8 @@
 }
 
 .note{
-    width: 300px;
-    height: 300px;
+    width: 350px;
+    height: 350px;
     background-color: rgb(255, 115, 215);
     font-size: 2em;
     overflow-wrap: break-word;
@@ -64,7 +64,7 @@ h1{
     font-size: 3em;
 }
 
-.editBtn , .removeBtn , #btn{
+.editBtn , .removeBtn , #addBtn , #remAllBtn{
     border: none;
     padding: 10px;
     font-size: 1.5em;
