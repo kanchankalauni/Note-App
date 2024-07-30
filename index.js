@@ -2,9 +2,9 @@ let data = JSON.parse(localStorage.getItem('notes')) || []
 
 function displayNote() {
     document.getElementById('allNote').innerHTML = ''
-    data.map((singleNote) => {
+    data.map((singleNote , i) => {
         if (singleNote) {
-            addNote(singleNote)
+            addNote(singleNote , i)
         }
     })
 }
@@ -20,13 +20,17 @@ document.getElementById('remAllBtn').addEventListener('click', () => {
     updateStorage()
 })
 
-function addNote(note = {}) {
+function addNote(note = {} , i) {
+    console.log("i", i)
     const {title = "", noteDate = setDate()} = note
     
     let divEle = document.createElement('div')
     divEle.setAttribute('class', 'singleNote')
+    let l = document.querySelectorAll('#allNote')
+    console.log(l[0].childNodes.length)
     divEle.innerHTML = `
     <div>
+        <span class='index'>${title ? i+1 : l[0].childNodes.length + 1}</span>
         <button class="editBtn">${title ? 'Edit' : 'Save'}</button>
         <button class="removeBtn">Remove</button>
     </div>
@@ -64,6 +68,7 @@ function addNote(note = {}) {
     })
 
     document.getElementById('allNote').append(divEle)
+    
 }
 
 function updateStorage() {
